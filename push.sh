@@ -6,5 +6,5 @@ if [ -z ${S3CMD_CONFIG_FILE+x} ]; then
 fi
 
 echo "Now syncing everything to S3"
-s3cmd -c ${S3CMD_CONFIG_FILE} sync build/ s3://ou-fa-rogierslag.nl -r -P
+s3cmd -c ${S3CMD_CONFIG_FILE} put build/ s3://ou-fa-rogierslag.nl -r -P
 echo "And done!"
