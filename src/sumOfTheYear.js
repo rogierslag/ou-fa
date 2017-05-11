@@ -82,7 +82,7 @@ class SumOfTheYear extends Component {
 				return <div />;
 			}
 			return <div><p>In jaar {e} gebeurt het volgende:</p>
-				<ol>{this.state.expectations[e].map(val => <li>{changeToString(val)}</li>)}</ol>
+				<ul>{this.state.expectations[e].map(val => <li>{changeToString(val)}</li>)}</ul>
 			</div>
 		});
 
@@ -91,17 +91,17 @@ class SumOfTheYear extends Component {
 			<div>
 				<p>{toCurrency(findSolution(this.state.endValue, this.state.interest, this.state.years, this.state.expectations))}</p>
 				<p>Eerst berekenen we de resultaten per jaar:</p>
-				<ol>
+				<ul>
 					{flattened.map((e, i) =>
 						<li>Jaar {i}: {toCurrency(e)}</li>)}
-				</ol>
+				</ul>
 				<p>Dan rekenen we de waardes per jaar uit:</p>
-				<ol>
+				<ul>
 					{flattened.filter((e,i) => i !== 0).map((e, i) =>
 						<li>Jaar {i}: {toCurrency(e)} delen door (1+{this.state.interest})^{i}
 							= {Math.pow(1 + this.state.interest, i)}. Uiteindelijk wordt
 							dat {toCurrency(e / Math.pow(1 + this.state.interest, i))}</li>)}
-				</ol>
+				</ul>
 				<p>Tenslotte verkopen we voor {toCurrency(this.state.endValue)} na {this.state.years} jaar. Dat wordt
 					dan {toCurrency(this.state.endValue)} / (1+{this.state.interest})^{this.state.years}
 					= {toCurrency(this.state.endValue / Math.pow(1 + this.state.interest, this.state.years))}.</p>
