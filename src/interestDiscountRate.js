@@ -9,12 +9,6 @@ const triggers = () => Math.ceil(Math.random() * 3);
 const change = (maxChange) => Math.ceil(Math.random() * 2 * maxChange) - maxChange;
 
 const expectations = (maxChange, years) => {
-	// return {
-	// 	1: [12000],
-	// 	2: [12000],
-	// 	3: [12000],
-	// 	4: [12000],
-	// };
 	const res = {};
 	for (let i = 1; i <= years; i++) {
 		const year = [];
@@ -44,7 +38,7 @@ const changeToString = (val) => {
 const flattenedChanges = (years, changes) => {
 	const flattened = [];
 	for (let i = 1; i <= years; i++) {
-		flattened.push(0);
+		flattened[i] = 0;
 	}
 	Object.keys(changes).forEach(e => {
 		flattened[e] = changes[e].reduce((a, b) => a + b, 0);
@@ -97,7 +91,7 @@ class InterestDiscountRate extends Component {
 				</ul>
 				<p>Dan rekenen we de waardes per jaar uit:</p>
 				<ul>
-					{flattened.filter((e,i) => i !== 0).map((e, i) =>
+					{flattened.map((e, i) =>
 						<li>Jaar {i}: {toCurrency(e)} delen door (1+{this.state.interest})^{i}
 							= {Math.pow(1 + this.state.interest, i)}. Uiteindelijk wordt
 							dat {toCurrency(e / Math.pow(1 + this.state.interest, i))}</li>)}
