@@ -28,8 +28,8 @@ const formulas = [
 ];
 
 const formulaStyle = {
-	height: 35,
-	cursor: 'pointer'
+	height : 35,
+	cursor : 'pointer'
 };
 
 class App extends Component {
@@ -46,7 +46,7 @@ class App extends Component {
 	_newExercise(componentType) {
 		console.log(`Should now instantiate a ${componentType}`);
 		const exercise = React.createElement(componentType, {});
-		this.setState({showPossibilities:false, exercise});
+		this.setState({showPossibilities : false, exercise});
 	}
 
 	render() {
@@ -54,7 +54,8 @@ class App extends Component {
 			<h2>Probeer de volgende opgave</h2>;
 		const selectFormulas = this.state.showPossibilities ? <ol>
 			{formulas.filter(e => e.component !== Null)
-				.map((e,i) => <li style={formulaStyle} key={i} onClick={() => this._newExercise(e.component)}>{e.name}</li>)}
+				.map((e, i) => <li style={formulaStyle} key={i}
+				                   onClick={() => this._newExercise(e.component)}>{e.name}</li>)}
 		</ol> : null;
 		const exerciseBlock = this.state.showPossibilities ? null : this.state.exercise;
 		return (

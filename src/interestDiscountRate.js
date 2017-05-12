@@ -53,6 +53,10 @@ const findSolution = (endValue, interest, years, changes) => {
 		endValue / Math.pow(1 + interest, years);
 };
 
+const noKeyedList = {
+	listStyle : 'none'
+};
+
 class InterestDiscountRate extends Component {
 
 	constructor() {
@@ -71,12 +75,15 @@ class InterestDiscountRate extends Component {
 	}
 
 	render() {
-		const yearSpecification = Object.keys(this.state.expectations).map(e => {
+		const yearSpecification = Object.keys(this.state.expectations).map((e, i) => {
 			if (this.state.expectations[e].length === 0) {
-				return <div />;
+				return <div key={i}/>;
 			}
-			return <div><p>In jaar {e} gebeurt het volgende:</p>
-				<ul>{this.state.expectations[e].map(val => <li>{changeToString(val)}</li>)}</ul>
+			return <div key={i}>
+				<p>In jaar {e} gebeurt het volgende:</p>
+				<ul style={noKeyedList}>
+					{this.state.expectations[e].map((val, i) => <li key={i}>{changeToString(val)}</li>)}
+				</ul>
 			</div>
 		});
 
@@ -85,14 +92,14 @@ class InterestDiscountRate extends Component {
 			<div>
 				<p>{toCurrency(findSolution(this.state.endValue, this.state.interest, this.state.years, this.state.expectations))}</p>
 				<p>Eerst berekenen we de resultaten per jaar:</p>
-				<ul>
+				<ul style={noKeyedList}>
 					{flattened.map((e, i) =>
-						<li>Jaar {i}: {toCurrency(e)}</li>)}
+						<li key={i}>Jaar {i}: {toCurrency(e)}</li>)}
 				</ul>
 				<p>Dan rekenen we de waardes per jaar uit:</p>
-				<ul>
+				<ul style={noKeyedList}>
 					{flattened.map((e, i) =>
-						<li>Jaar {i}: {toCurrency(e)} delen door (1+{this.state.interest})^{i}
+						<li key={i}>Jaar {i}: {toCurrency(e)} delen door (1+{this.state.interest})^{i}
 							= {Math.pow(1 + this.state.interest, i)}. Uiteindelijk wordt
 							dat {toCurrency(e / Math.pow(1 + this.state.interest, i))}</li>)}
 				</ul>

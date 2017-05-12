@@ -56,7 +56,8 @@ const companyNames = [
 	"namflex",
 	"quotelane",
 	"zertechnology",
-	"zumplanet"];
+	"zumplanet"
+];
 
 const get = (excluding = undefined) => {
 	const possibilities = companyNames.filter(e => e !== excluding);
