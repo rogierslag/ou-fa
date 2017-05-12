@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Null from './null.js';
-import SumOfTheYear from './sumOfTheYear.js';
+import InterestDiscountRate from './interestDiscountRate.js';
 
 const formula = (name, component) => ({name, component});
 
@@ -23,8 +23,8 @@ const formulas = [
 	formula('Toegevoegde waarde', Null),
 	formula('TW per werknemer', Null),
 	formula('Gemiddelde personeelskosten', Null),
-	formula('Sum-of-the-year methode', SumOfTheYear),
-	formula('Rentedisconteringsvoet', Null),
+	formula('Sum-of-the-year methode', Null),
+	formula('Rentedisconteringsvoet', InterestDiscountRate),
 ];
 
 const formulaStyle = {

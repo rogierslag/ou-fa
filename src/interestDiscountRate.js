@@ -59,7 +59,7 @@ const findSolution = (endValue, interest, years, changes) => {
 		endValue / Math.pow(1 + interest, years);
 };
 
-class SumOfTheYear extends Component {
+class InterestDiscountRate extends Component {
 
 	constructor() {
 		super();
@@ -127,4 +127,4 @@ class SumOfTheYear extends Component {
 	}
 }
 
-export default SumOfTheYear;
+export default InterestDiscountRate;
