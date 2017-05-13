@@ -43,24 +43,28 @@ class SumOfTheYear extends Component {
 		const otherRows = this._denominatorYears().map((e, i) => {
 			const deductible = (this.state.startValue - this.state.endValue) * e / denominator;
 			previousValue -= deductible;
-			return <tr>
+			return <tr key={i}>
 				<td>{i}</td>
 				<td>{toCurrency(deductible)}</td>
-				<td>{toCurrency(previousValue+this.state.endValue)}</td>
+				<td>{toCurrency(previousValue + this.state.endValue)}</td>
 			</tr>;
 		});
 		return <table>
+			<thead>
 			<tr>
 				<th width={80}>Jaar</th>
 				<th width={180}>Afschrijving</th>
 				<th width={180}>Boekwaarde</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr>
 				<td>0</td>
 				<td><i>nvt</i></td>
 				<td>{toCurrency(this.state.startValue)}</td>
 			</tr>
 			{otherRows}
+			</tbody>
 		</table>;
 	}
 
@@ -77,7 +81,8 @@ class SumOfTheYear extends Component {
 				{toCurrency((this.state.startValue - this.state.endValue) * this.state.years / this._denominator())}.
 				<br /><br/>
 				De boekwaarde na het eerste jaar is dan {toCurrency(this.state.startValue)} -&nbsp;
-				{toCurrency((this.state.startValue - this.state.endValue) * this.state.years / this._denominator())} =&nbsp;
+				{toCurrency((this.state.startValue - this.state.endValue) * this.state.years / this._denominator())}
+				=&nbsp;
 				{toCurrency(this.state.startValue - ((this.state.startValue - this.state.endValue) * this.state.years / this._denominator()))}.
 				<br />
 				<br />
