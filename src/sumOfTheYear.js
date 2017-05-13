@@ -47,6 +47,7 @@ class SumOfTheYear extends Component {
 				<td>{i}</td>
 				<td>{toCurrency(deductible)}</td>
 				<td>{toCurrency(previousValue + this.state.endValue)}</td>
+				<td>{e} / {denominator}</td>
 			</tr>;
 		});
 		return <table>
@@ -55,6 +56,7 @@ class SumOfTheYear extends Component {
 				<th width={80}>Jaar</th>
 				<th width={180}>Afschrijving</th>
 				<th width={180}>Boekwaarde</th>
+				<th width={180}>Afschrijvingsdeel</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -62,6 +64,7 @@ class SumOfTheYear extends Component {
 				<td>0</td>
 				<td><i>nvt</i></td>
 				<td>{toCurrency(this.state.startValue)}</td>
+				<td><i>nvt</i></td>
 			</tr>
 			{otherRows}
 			</tbody>

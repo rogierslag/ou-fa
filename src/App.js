@@ -37,8 +37,8 @@ const questionNavigationStyle = {
 	fontWeight : 'normal',
 	float : 'left',
 	fontSize : '16px',
-	cursor: 'pointer',
-	textDecoration: 'underline'
+	cursor : 'pointer',
+	textDecoration : 'underline'
 };
 
 class App extends Component {
@@ -55,7 +55,7 @@ class App extends Component {
 
 	_newExercise(instantiator) {
 		console.log(instantiator());
-		const exercise = React.createElement(instantiator(), {seed: Math.random()});
+		const exercise = React.createElement(instantiator(), {seed : Math.random()});
 		this.setState({showPossibilities : false, exercise, instantiator});
 	}
 
@@ -63,7 +63,7 @@ class App extends Component {
 		const supportText = this.state.showPossibilities ? <h2>Kies een berekening om te oefenen</h2> :
 			<h2>Probeer de volgende opgave</h2>;
 		const other = this.state.showPossibilities ? null :
-			<div style={{marginTop : '-20px'}}>
+			<div style={{marginTop : '20px'}}>
 				{/*<h3 style={questionNavigationStyle} onClick={() => this._newExercise(this.state.instantiator)}>Nieuwe opgave</h3>*/}
 				<h3 style={questionNavigationStyle} onClick={() => this.setState({showPossibilities : true})}>Andere
 					opgave</h3>
@@ -79,13 +79,10 @@ class App extends Component {
 				<div className="App-header">
 					<img src={logo} className="App-logo" alt="logo"/>
 					{supportText}
-					{other}
 				</div>
 				{selectFormulas}
 				{exerciseBlock}
-				<div style={{marginTop : '40px'}}>
-					{other}
-				</div>
+				{other}
 			</div>
 		);
 	}
