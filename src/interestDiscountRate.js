@@ -106,7 +106,7 @@ class InterestDiscountRate extends Component {
 
 		return <div>
 			<p>Bedrijf {this.props.companyName} hanteert een rentedisconteringsvoet
-				van {this.props.interest * 100}%. Ze zijn eigenaar van een {this.props.thing}.
+				van {Math.round(this.props.interest * 100, 0)}%. Ze zijn eigenaar van een {this.props.thing}.
 				Deze willen ze verkopen over {this.props.years} jaar voor {toCurrency(this.props.endValue)}.</p>
 
 			<p>In deze {this.props.years} jaar/jaren zijn er nog de volgende verwachtingen.</p>

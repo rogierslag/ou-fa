@@ -22,7 +22,7 @@
 	<script>
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', function () {
-				navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+				navigator.serviceWorker.register('service-worker.js?v=3').then(function (registration) {
 					// Registration was successful
 					console.log('ServiceWorker registration successful with scope: ', registration.scope);
 				}, function (err) {
@@ -38,7 +38,7 @@
 	</script>
 </head>
 <body>
-<div id="root"></div>
+<div id="root">De applicatie wordt geladen, een moment geduld aub...</div>
 <!--
   This HTML file is a template.
   If you open it directly in the browser, you will see an empty page.
@@ -49,6 +49,5 @@
   To begin the development, run `npm start`.
   To create a production bundle, use `npm run build`.
 -->
-De applicatie wordt geladen, een moment geduld aub...
 </body>
 </html>

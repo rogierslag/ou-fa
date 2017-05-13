@@ -15,6 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "prod-like": "npm run build && serve -s build",
     "push-prod": "npm run build && bash push.sh"
   }
 }
