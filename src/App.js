@@ -4,28 +4,28 @@ import './App.css';
 
 import Null from './null.js';
 import InterestDiscountRate from './interestDiscountRate.js';
-import SumOfTheYear from './sumOfTheYear.js';
+import SumOfTheYearGenerator from './sumOfTheYear.js';
 
 const formula = (name, instantiator) => ({name, instantiator});
 
 const formulas = [
-	formula('REV', () => Null),
-	formula('RTV', () => Null),
-	formula('Leverage', () => Null),
-	formula('Marge tot bruto resultaat', () => Null),
-	formula('Marge tot resultaat', () => Null),
-	formula('Acid test', () => Null),
-	formula('Quick ratio', () => Null),
-	formula('Werkkapitaalratio', () => Null),
-	formula('WPA', () => Null),
-	formula('Koers-winstverhouding', () => Null),
-	formula('Operationele risico', () => Null),
-	formula('Rente dekkingsfactor', () => Null),
-	formula('Toegevoegde waarde', () => Null),
-	formula('TW per werknemer', () => Null),
-	formula('Gemiddelde personeelskosten', () => Null),
-	formula('Sum-of-the-year methode', () => SumOfTheYear),
-	formula('Rentedisconteringsvoet', () => InterestDiscountRate),
+	formula('REV', Null),
+	formula('RTV', Null),
+	formula('Leverage', Null),
+	formula('Marge tot bruto resultaat', Null),
+	formula('Marge tot resultaat', Null),
+	formula('Acid test', Null),
+	formula('Quick ratio', Null),
+	formula('Werkkapitaalratio', Null),
+	formula('WPA', Null),
+	formula('Koers-winstverhouding', Null),
+	formula('Operationele risico', Null),
+	formula('Rente dekkingsfactor', Null),
+	formula('Toegevoegde waarde', Null),
+	formula('TW per werknemer', Null),
+	formula('Gemiddelde personeelskosten', Null),
+	formula('Sum-of-the-year methode', SumOfTheYearGenerator),
+	formula('Rentedisconteringsvoet', InterestDiscountRate),
 ];
 
 const formulaStyle = {
@@ -54,9 +54,8 @@ class App extends Component {
 	}
 
 	_newExercise(instantiator) {
-		console.log(instantiator());
-		const exercise = React.createElement(instantiator(), {seed : Math.random()});
-		this.setState({showPossibilities : false, exercise, instantiator});
+		const exercise = instantiator();
+		this.setState({showPossibilities : false, exercise, instantiator : instantiator});
 	}
 
 	render() {
@@ -64,12 +63,13 @@ class App extends Component {
 			<h2>Probeer de volgende opgave</h2>;
 		const other = this.state.showPossibilities ? null :
 			<div style={{marginTop : '20px'}}>
-				{/*<h3 style={questionNavigationStyle} onClick={() => this._newExercise(this.state.instantiator)}>Nieuwe opgave</h3>*/}
+				<h3 style={questionNavigationStyle} onClick={() => this._newExercise(this.state.instantiator)}>Nieuwe
+					opgave</h3>
 				<h3 style={questionNavigationStyle} onClick={() => this.setState({showPossibilities : true})}>Andere
 					opgave</h3>
 			</div>;
 		const selectFormulas = this.state.showPossibilities ? <ol>
-			{formulas.filter(e => e.instantiator() !== Null)
+			{formulas.filter(e => e.instantiator !== Null)
 				.map((e, i) => <li style={formulaStyle} key={i}
 				                   onClick={() => this._newExercise(e.instantiator)}>{e.name}</li>)}
 		</ol> : null;

@@ -6,4 +6,7 @@ class Null extends Component {
 	}
 }
 
-export default Null;
+const generator = () => {
+	return <Null />
+};
+export default generator;
