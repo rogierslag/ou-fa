@@ -4,6 +4,7 @@ import './App.css';
 
 import Null from './null.js';
 import InterestDiscountRate from './interestDiscountRate.js';
+import SumOfTheYear from './sumOfTheYear.js';
 
 const formula = (name, component) => ({name, component});
 
@@ -23,7 +24,7 @@ const formulas = [
 	formula('Toegevoegde waarde', Null),
 	formula('TW per werknemer', Null),
 	formula('Gemiddelde personeelskosten', Null),
-	formula('Sum-of-the-year methode', Null),
+	formula('Sum-of-the-year methode', SumOfTheYear),
 	formula('Rentedisconteringsvoet', InterestDiscountRate),
 ];
 
