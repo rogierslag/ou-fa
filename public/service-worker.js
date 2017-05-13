@@ -1,6 +1,5 @@
-
 // Also update the service worker number ins index.html when changing this!
-var CACHE_NAME = 'ou-fa-v4';
+var CACHE_NAME = 'ou-fa-v6';
 var SHOULD_CACHE = (location.hostname !== 'localhost');
 
 console.log("Will I be using a service worker? " + SHOULD_CACHE);
@@ -56,6 +55,18 @@ self.addEventListener('fetch', function (event) {
 	if (SHOULD_CACHE) {
 		event.respondWith(
 			caches.match(event.request).then(function (response) {
+				const url = event.request.url.split('?')[0];
+				if (url.endsWith("/") || url.endsWith('/index.html')) {
+					// Always try to fetch the main source from the remove if possible
+					console.log('Detected main url');
+					try {
+						return fetch(event.request) || response;
+					} catch (e) {
+						console.warn('Triggered an exception', e);
+						return response;
+					}
+				}
+				// All other may use fallbacks
 				return response || fetch(event.request);
 			})
 		);
