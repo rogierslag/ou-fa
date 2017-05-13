@@ -1,5 +1,5 @@
 
-// Name our cache
+// Also update the service worker number ins index.html when changing this!
 var CACHE_NAME = 'ou-fa-v4';
 var SHOULD_CACHE = (location.hostname !== 'localhost');
 
