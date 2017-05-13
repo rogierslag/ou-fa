@@ -28,12 +28,14 @@ const formulas = [
 	formula('Rentedisconteringsvoet', InterestDiscountRate),
 ];
 
+const validFormulas = () => formulas.filter(e => e.instantiator !== Null);
+
 const formulaStyle = {
 	height : 35,
 	cursor : 'pointer'
 };
 const questionNavigationStyle = {
-	width : '50%',
+	width : '33%',
 	fontWeight : 'normal',
 	float : 'left',
 	fontSize : '16px',
@@ -58,6 +60,12 @@ class App extends Component {
 		this.setState({showPossibilities : false, exercise, instantiator : instantiator});
 	}
 
+	_randomExercise() {
+		const valids = validFormulas();
+		const instantiator = valids[Math.floor(Math.random() * valids.length)].instantiator;
+		this.setState({showPossibilities : false, exercise: instantiator(), instantiator});
+	}
+
 	render() {
 		const supportText = this.state.showPossibilities ? <h2>Kies een berekening om te oefenen</h2> :
 			<h2>Probeer de volgende opgave</h2>;
@@ -67,11 +75,11 @@ class App extends Component {
 					opgave</h3>
 				<h3 style={questionNavigationStyle} onClick={() => this.setState({showPossibilities : true})}>Andere
 					opgave</h3>
+				<h3 style={questionNavigationStyle} onClick={() => this._randomExercise()}>Willekeurige opgave</h3>
 			</div>;
 		const selectFormulas = this.state.showPossibilities ? <ol>
-			{formulas.filter(e => e.instantiator !== Null)
-				.map((e, i) => <li style={formulaStyle} key={i}
-				                   onClick={() => this._newExercise(e.instantiator)}>{e.name}</li>)}
+			{validFormulas().map((e, i) => <li style={formulaStyle} key={i}
+			                                 onClick={() => this._newExercise(e.instantiator)}>{e.name}</li>)}
 		</ol> : null;
 		const exerciseBlock = this.state.showPossibilities ? null : this.state.exercise;
 		return (
