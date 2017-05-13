@@ -64,7 +64,7 @@ class App extends Component {
 	_randomExercise() {
 		const valids = validFormulas();
 		const instantiator = valids[Math.floor(Math.random() * valids.length)].instantiator;
-		this.setState({showPossibilities : false, exercise: instantiator(), instantiator});
+		this.setState({showPossibilities : false, exercise : instantiator(), instantiator});
 	}
 
 	render() {
@@ -80,7 +80,7 @@ class App extends Component {
 			</div>;
 		const selectFormulas = this.state.showPossibilities ? <ol>
 			{validFormulas().map((e, i) => <li style={formulaStyle} key={i}
-			                                 onClick={() => this._newExercise(e.instantiator)}>{e.name}</li>)}
+			                                   onClick={() => this._newExercise(e.instantiator)}>{e.name}</li>)}
 		</ol> : null;
 		const exerciseBlock = this.state.showPossibilities ? null : this.state.exercise;
 		return (
@@ -89,9 +89,11 @@ class App extends Component {
 					<img src={logo} className="App-logo" alt="logo"/>
 					{supportText}
 				</div>
-				{selectFormulas}
-				{exerciseBlock}
-				{other}
+				<div style={{maxWidth : '640px', marginLeft: 'auto', marginRight: 'auto'}}>
+					{selectFormulas}
+					{exerciseBlock}
+					{other}
+				</div>
 			</div>
 		);
 	}

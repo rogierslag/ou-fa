@@ -51,25 +51,27 @@ class InterestCoverageRatio extends Component {
 			Toon oplossing
 		</p>;
 		if (this.props.splitted) {
-			return <p>
-				Bedrijf {this.props.companyName} heeft in een jaar een winst geboekt van&nbsp;
-				{toCurrency(this.props.profit)}. Hierover moeten vervolgens nog de rentelasten van&nbsp;
-				{toCurrency(this.props.interest)} betaald woden, en belastingen ter waarde van&nbsp;
-				{toCurrency(this.props.taxes)}.
+			return <div>
+				<p>
+					Bedrijf {this.props.companyName} heeft in een jaar een winst geboekt van&nbsp;
+					{toCurrency(this.props.profit)}. Hierover moeten vervolgens nog de rentelasten van&nbsp;
+					{toCurrency(this.props.interest)} betaald woden, en belastingen ter waarde van&nbsp;
+					{toCurrency(this.props.taxes)}.
+					<br/>
+					{question}
+				</p>
+				{showSolution}
+			</div>
+		}
+		return <div>
+			<p>
+				Bedrijf {this.props.companyName} heeft in een jaar een EBITDA van {toCurrency(this._total())}
+				&nbsp; behaald. De rentelasten over datzelfde jaar waren {toCurrency(this.props.interest)}.
 				<br/>
 				{question}
-				<br/>
-				{showSolution}
 			</p>
-		}
-		return <p>
-			Bedrijf {this.props.companyName} heeft in een jaar een EBITDA van {toCurrency(this._total())}
-			&nbsp; behaald. De rentelasten over datzelfde jaar waren {toCurrency(this.props.interest)}.
-			<br/>
-			{question}
-			<br/>
 			{showSolution}
-		</p>;
+		</div>;
 	}
 
 	render() {
@@ -92,14 +94,14 @@ InterestCoverageRatio.propTypes =
 	};
 
 const someNumber = (max, offset) => {
-	return (Math.floor(Math.random() * max + 1) + offset )* 1000;
+	return (Math.floor(Math.random() * max + 1) + offset ) * 1000;
 };
 
 const generator = () => {
 	const profit = someNumber(400, 300);
 	const interest = someNumber(90, 250);
 	const taxes = someNumber(100, 100);
-	const splitted = Math.random() < 2/3;
+	const splitted = Math.random() < 2 / 3;
 
 	return <InterestCoverageRatio profit={profit} interest={interest} taxes={taxes} companyName={companyName()}
 	                              splitted={splitted}/>;
