@@ -13,3 +13,8 @@ export let toCurrency = amount => {
 	}
 	return value;
 };
+
+export let asRounded = (amount, decimals = 1) => {
+	const multiplier = Math.pow(10, decimals);
+	return Math.round(amount * multiplier) / multiplier;
+};

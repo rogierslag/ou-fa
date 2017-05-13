@@ -1,8 +1,10 @@
-// Set this to true for production
-var doCache = true;
 
 // Name our cache
-var CACHE_NAME = 'ou-fa-v3';
+var CACHE_NAME = 'ou-fa-v4';
+var SHOULD_CACHE = (location.hostname !== 'localhost');
+
+console.log("Will I be using a service worker? " + SHOULD_CACHE);
+console.log("Defined service worker name=" + CACHE_NAME);
 
 // Delete old caches that are not our current one!
 self.addEventListener("activate", event => {
@@ -22,7 +24,7 @@ self.addEventListener("activate", event => {
 
 // The first time the user starts up the PWA, 'install' is triggered.
 self.addEventListener('install', function (event) {
-	if (doCache) {
+	if (SHOULD_CACHE) {
 		event.waitUntil(
 			caches.open(CACHE_NAME)
 				.then(function (cache) {
@@ -51,7 +53,7 @@ self.addEventListener('install', function (event) {
 // When the webpage goes to fetch files, we intercept that request and serve up the matching files
 // if we have them
 self.addEventListener('fetch', function (event) {
-	if (doCache) {
+	if (SHOULD_CACHE) {
 		event.respondWith(
 			caches.match(event.request).then(function (response) {
 				return response || fetch(event.request);

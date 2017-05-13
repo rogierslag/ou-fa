@@ -5,6 +5,7 @@ import './App.css';
 import Null from './null.js';
 import InterestDiscountRate from './interestDiscountRate.js';
 import SumOfTheYearGenerator from './sumOfTheYear.js';
+import InterestCoverageRatio from './interestCoverageRatio.js';
 
 const formula = (name, instantiator) => ({name, instantiator});
 
@@ -20,7 +21,7 @@ const formulas = [
 	formula('WPA', Null),
 	formula('Koers-winstverhouding', Null),
 	formula('Operationele risico', Null),
-	formula('Rente dekkingsfactor', Null),
+	formula('Rentedekkingsfactor', InterestCoverageRatio),
 	formula('Toegevoegde waarde', Null),
 	formula('TW per werknemer', Null),
 	formula('Gemiddelde personeelskosten', Null),
