@@ -62,15 +62,10 @@ class InterestDiscountRate extends Component {
 
 	constructor() {
 		super();
-		this.state = {};
-		this._freshState();
+		this.state = {showSolution : false};
 	}
 
 	componentWillReceiveProps() {
-		this._freshState();
-	}
-
-	_freshState() {
 		this.setState({showSolution : false});
 	}
 
